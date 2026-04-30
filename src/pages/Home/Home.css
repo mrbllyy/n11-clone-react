@@ -1,0 +1,140 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.home-main {
+  flex: 1;
+  padding-bottom: 50px;
+}
+
+.hero-banner-container {
+  padding: 30px 0;
+}
+
+.hero-banner {
+  background: linear-gradient(135deg, #E0006E 0%, #ff4d94 100%);
+  border-radius: 12px;
+  padding: 60px;
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.banner-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.banner-btn {
+  background-color: var(--white);
+  color: var(--n11-magenta);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: transform 0.2s;
+}
+
+.banner-btn:hover {
+  transform: scale(1.05);
+}
+
+.products-section {
+  margin-top: 40px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.see-all {
+  color: var(--n11-magenta);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.see-all:hover {
+  text-decoration: underline;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.campaign-banners {
+  margin-top: 60px;
+}
+
+.campaign-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.campaign-card {
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.campaign-card:hover {
+  transform: translateY(-5px);
+}
+
+.campaign-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.campaign-card p {
+  font-size: 14px;
+  color: var(--n11-grey);
+}
+
+.main-footer {
+  background-color: var(--white);
+  padding: 40px 0;
+  border-top: 1px solid var(--n11-border);
+  text-align: center;
+  color: var(--n11-grey);
+  font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  .campaign-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-banner {
+    padding: 40px;
+  }
+  
+  .banner-content h2 {
+    font-size: 28px;
+  }
+}

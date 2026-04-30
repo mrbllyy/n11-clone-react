@@ -1,0 +1,39 @@
+.category-bar {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--n11-border);
+  padding: 10px 0;
+}
+
+.category-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 20px;
+  transition: background-color 0.2s;
+}
+
+.category-item:hover {
+  background-color: #fcf1f5;
+}
+
+.category-item:hover .cat-name {
+  color: var(--n11-magenta);
+}
+
+.cat-icon {
+  font-size: 18px;
+}
+
+.cat-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--n11-dark);
+}

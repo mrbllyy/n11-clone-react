@@ -1,6 +1,6 @@
 :root {
-  --n11-magenta: #f73a8b;
-  --n11-magenta-hover: #d62f76;
+  --n11-magenta: #ff44ee;
+  --n11-magenta-hover: #e03dd1;
   --n11-black: #1c1c1e;
   --n11-dark: #1c1c1e;
   --n11-grey: #666666;
@@ -8,11 +8,11 @@
   --n11-bg: #f4f4f4;
   --n11-border: #e6e6e6;
   --white: #ffffff;
-  
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
-  --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
-  
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
   --sans: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -62,4 +62,3 @@ input {
   margin: 0 auto;
   padding: 0 20px;
 }
-

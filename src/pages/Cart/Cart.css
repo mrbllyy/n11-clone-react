@@ -44,7 +44,7 @@
 
 .start-shopping-btn {
   display: inline-block;
-  background-color: #5d3ebc;
+  background-color: var(--n11-magenta);
   color: white;
   padding: 12px 30px;
   border-radius: 4px;
@@ -54,7 +54,7 @@
 }
 
 .start-shopping-btn:hover {
-  background-color: #4a3196;
+  background-color: var(--n11-magenta-hover);
 }
 
 /* Cart Content Layout */
@@ -276,7 +276,7 @@
 
 .checkout-btn {
   width: 100%;
-  background-color: #5d3ebc;
+  background-color: var(--n11-magenta);
   color: white;
   border: none;
   padding: 15px;
@@ -289,7 +289,7 @@
 }
 
 .checkout-btn:hover {
-  background-color: #4a3196;
+  background-color: var(--n11-magenta-hover);
 }
 
 /* Responsive adjustments */

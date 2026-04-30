@@ -93,7 +93,7 @@
 }
 
 .complete-order-btn {
-  background-color: #5d3ebc;
+  background-color: var(--n11-magenta);
   color: white;
   border: none;
   padding: 18px;
@@ -106,7 +106,7 @@
 }
 
 .complete-order-btn:hover {
-  background-color: #4a3196;
+  background-color: var(--n11-magenta-hover);
 }
 
 .complete-order-btn:disabled {

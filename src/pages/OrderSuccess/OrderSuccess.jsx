@@ -38,7 +38,7 @@ const OrderSuccess = () => {
         <div style={{ display: 'flex', gap: '15px' }}>
           <Link to="/" className="start-shopping-btn" style={{ 
             textDecoration: 'none',
-            backgroundColor: '#5d3ebc',
+            backgroundColor: 'var(--n11-magenta)',
             color: 'white',
             padding: '12px 30px',
             borderRadius: '4px',
@@ -48,11 +48,11 @@ const OrderSuccess = () => {
           </Link>
           <Link to="/hesabim" style={{ 
             textDecoration: 'none',
-            color: '#5d3ebc',
+            color: 'var(--n11-magenta)',
             padding: '12px 30px',
             borderRadius: '4px',
             fontWeight: '600',
-            border: '1px solid #5d3ebc'
+            border: '1px solid var(--n11-magenta)'
           }}>
             Siparişlerimi Gör
           </Link>

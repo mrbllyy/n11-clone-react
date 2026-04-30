@@ -132,8 +132,8 @@
 
 .add-to-cart-btn {
   background-color: var(--white);
-  color: var(--n11-magenta);
-  border: 1px solid var(--n11-magenta);
+  color: var(--n11-black);
+  border: 1px solid var(--n11-black);
   padding: 8px;
   border-radius: 4px;
   margin-top: 10px;
@@ -144,6 +144,6 @@
 }
 
 .add-to-cart-btn:hover {
-  background-color: var(--n11-magenta);
+  background-color: var(--n11-black);
   color: var(--white);
 }

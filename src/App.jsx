@@ -6,6 +6,8 @@ import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
 import Account from './pages/Account/Account'
 import Cart from './pages/Cart/Cart'
+import Checkout from './pages/Checkout/Checkout'
+import OrderSuccess from './pages/OrderSuccess/OrderSuccess'
 import './App.css'
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/hesabim" element={<Account />} />
             <Route path="/sepet" element={<Cart />} />
+            <Route path="/odeme" element={<Checkout />} />
+            <Route path="/siparis-basarili" element={<OrderSuccess />} />
           </Routes>
         </Router>
       </CartProvider>

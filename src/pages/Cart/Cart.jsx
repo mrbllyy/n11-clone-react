@@ -94,7 +94,9 @@ const Cart = () => {
                   </span>
                 </div>
 
-                <button className="checkout-btn">Alışverişi Tamamla</button>
+                <Link to="/odeme" className="checkout-btn" style={{ textAlign: 'center', display: 'block', textDecoration: 'none' }}>
+                  Alışverişi Tamamla
+                </Link>
               </div>
             </div>
           </div>

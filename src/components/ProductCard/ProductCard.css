@@ -129,3 +129,21 @@
   margin-top: 10px;
   text-align: center;
 }
+
+.add-to-cart-btn {
+  background-color: var(--white);
+  color: var(--n11-magenta);
+  border: 1px solid var(--n11-magenta);
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--n11-magenta);
+  color: var(--white);
+}

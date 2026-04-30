@@ -1,7 +1,9 @@
+import { useCart } from '../../context/CartContext';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
   const { title, image, price, oldPrice, rating, reviews, freeShipping } = product;
+  const { addToCart } = useCart();
 
   return (
     <div className="product-card">
@@ -38,6 +40,16 @@ const ProductCard = ({ product }) => {
         <div className="sepette-badge">
           SEPETTE %10 İNDİRİM
         </div>
+
+        <button 
+          className="add-to-cart-btn" 
+          onClick={(e) => {
+            e.preventDefault();
+            addToCart(product);
+          }}
+        >
+          Sepete Ekle
+        </button>
       </div>
     </div>
   );

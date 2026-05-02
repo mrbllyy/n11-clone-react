@@ -43,12 +43,10 @@ const Checkout = () => {
       const orderRequest = {
         items: cart.map(item => ({
           productId: item.productId || item.id,
-          quantity: item.quantity,
-          price: item.price
+          quantity: item.quantity
         })),
         addressInfo: addressData,
-        paymentCard: paymentData,
-        totalAmount: cartTotal + (cartTotal >= 500 ? 0 : 49.99)
+        paymentCard: paymentData
       };
 
       // Adım 3: Siparişi Başlatma (Frontend -> Order Service)

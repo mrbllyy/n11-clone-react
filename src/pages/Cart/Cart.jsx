@@ -1,10 +1,15 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import Header from '../../components/Header/Header';
 import './Cart.css';
 
 const Cart = () => {
-  const { cart, removeFromCart, updateQuantity, clearCart, cartTotal, cartItemCount } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart, cartTotal, cartItemCount, refreshCart } = useCart();
+
+  useEffect(() => {
+    refreshCart();
+  }, []);
 
   return (
     <div className="cart-page">
@@ -33,37 +38,40 @@ const Cart = () => {
               </div>
               
               <div className="cart-items-list">
-                {cart.map((item) => (
-                  <div key={item.id} className="cart-item">
-                    <div className="item-image">
-                      <img src={item.image} alt={item.title} />
-                    </div>
+                {cart.map((item) => {
+                  const itemId = item.id || item.productId;
+                  return (
+                    <div key={itemId} className="cart-item">
+                      <div className="item-image">
+                        <img src={item.img || 'https://via.placeholder.com/150'} alt={item.title} />
+                      </div>
                     <div className="item-details">
                       <h3 className="item-title">{item.title}</h3>
                       {item.freeShipping && <span className="free-shipping-tag">Ücretsiz Kargo</span>}
                     </div>
                     
-                    <div className="item-quantity-controls">
-                      <button 
-                        onClick={() => updateQuantity(item.id, -1)}
-                        disabled={item.quantity <= 1}
-                      >-</button>
-                      <span className="quantity-value">{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.id, 1)}>+</button>
-                    </div>
-
-                    <div className="item-price-section">
-                      <div className="item-price">
-                        {(item.price * item.quantity).toLocaleString()} TL
+                      <div className="item-quantity-controls">
+                        <button 
+                          onClick={() => updateQuantity(itemId, -1)}
+                          disabled={(item.quantity || 1) <= 1}
+                        >-</button>
+                        <span className="quantity-value">{item.quantity || 1}</span>
+                        <button onClick={() => updateQuantity(itemId, 1)}>+</button>
                       </div>
-                      <button className="remove-item-btn" onClick={() => removeFromCart(item.id)}>
-                        <svg viewBox="0 0 24 24" width="20" height="20">
-                          <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
-                        </svg>
-                      </button>
+  
+                      <div className="item-price-section">
+                        <div className="item-price">
+                          {(item.price * (item.quantity || 1)).toLocaleString()} TL
+                        </div>
+                        <button className="remove-item-btn" onClick={() => removeFromCart(itemId)}>
+                          <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                          </svg>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 

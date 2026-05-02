@@ -15,20 +15,26 @@ export const CartProvider = ({ children }) => {
   // Load cart from backend when user changes
   useEffect(() => {
     const fetchCart = async () => {
-      // Try to get username from user object (it might be username or email depending on login)
-      const username = user?.username || user?.email;
-      
-      if (username) {
+      if (user) {
         try {
-          const response = await api.get(`/api/shopping-cart/${username}`);
-          setCart(response.data || []);
+          const response = await api.get('/api/shopping-cart');
+          const cartData = response.data;
+          
+          // Yeni yapıya göre (cartItems -> product + quantity) eşleme yapıyoruz
+          const items = Array.isArray(cartData?.cartItems) 
+            ? cartData.cartItems.map(item => ({
+                ...item.product,
+                cartItemId: item.id, // Cart içindeki kendi ID'si
+                quantity: item.quantity
+              })).sort((a, b) => (a.title || '').localeCompare(b.title || ''))
+            : [];
+            
+          setCart(items);
         } catch (error) {
           console.error('Error fetching cart:', error);
           setCart([]);
         }
       } else {
-        // Fallback to localStorage for guest users if desired, 
-        // but description implies service usage.
         setCart([]);
       }
     };
@@ -36,22 +42,36 @@ export const CartProvider = ({ children }) => {
     fetchCart();
   }, [user]);
 
+  const refreshCart = async () => {
+    if (user) {
+      try {
+        const response = await api.get('/api/shopping-cart');
+        const cartData = response.data;
+        const items = Array.isArray(cartData?.cartItems) 
+          ? cartData.cartItems.map(item => ({
+              ...item.product,
+              cartItemId: item.id,
+              quantity: item.quantity
+            })).sort((a, b) => (a.title || '').localeCompare(b.title || ''))
+          : [];
+        setCart(items);
+      } catch (error) {
+        console.error('Error refreshing cart:', error);
+      }
+    }
+  };
+
   const addToCart = async (product, quantity = 1) => {
     try {
-      await api.post('/api/shopping-cart', {
-        productId: product.id,
+      await api.post(`/api/shopping-cart/add/${product.id}`, {
         quantity: quantity,
         price: product.price,
         title: product.title,
         image: product.image
       });
-      
+
       // Refresh cart from server to stay in sync
-      const username = user?.username || user?.email;
-      if (username) {
-        const response = await api.get(`/api/shopping-cart/${username}`);
-        setCart(response.data || []);
-      }
+      await refreshCart();
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
@@ -61,12 +81,8 @@ export const CartProvider = ({ children }) => {
     try {
       // Standard REST delete for a product in cart
       await api.delete(`/api/shopping-cart/${productId}`);
-      
-      const username = user?.username || user?.email;
-      if (username) {
-        const response = await api.get(`/api/shopping-cart/${username}`);
-        setCart(response.data || []);
-      }
+
+      await refreshCart();
     } catch (error) {
       console.error('Error removing from cart:', error);
     }
@@ -92,8 +108,8 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const cartItemCount = cart.reduce((total, item) => total + (item.quantity || 0), 0);
-  const cartTotal = cart.reduce((total, item) => total + ((item.price || 0) * (item.quantity || 0)), 0);
+  const cartItemCount = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+  const cartTotal = cart.reduce((total, item) => total + ((item.price || 0) * (item.quantity || 1)), 0);
 
   const value = {
     cart,
@@ -101,6 +117,7 @@ export const CartProvider = ({ children }) => {
     removeFromCart,
     updateQuantity,
     clearCart,
+    refreshCart,
     cartItemCount,
     cartTotal,
   };

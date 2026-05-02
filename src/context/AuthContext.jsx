@@ -18,11 +18,15 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userData) => {
     localStorage.setItem('token', userData.accessToken);
+    if (userData.refreshToken) {
+      localStorage.setItem('refreshToken', userData.refreshToken);
+    }
     setUser(userData);
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
     setUser(null);
   };
 
